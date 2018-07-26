@@ -28,31 +28,28 @@ class LinkedList {
     }
   }
 
-  // insertBefore(item, node) {
-  //   if (this.head === null) {
-  //     console.log('Array is empty');
-  //   } else {
-  //     let tempNode = this.head;
-  //     let targetNode = this.head;
-  //     let tempNode2 = tempNode;
-  //     while (targetNode.value !== node) {
-  //       if (targetNode.next === null) {
-  //         return null;
-  //       } else {
-  //         tempNode = tempNode.next;
-  //         tempNode2 = tempNode;
-  //       }
-  //     }
-  //     targetNode = new _Node(item, tempNode);
-  //     tempNode2.next = targetNode;
-  //   }
-  // }
+  // 5, 9, 10, 11
+  // (6, 9) => item is #, node is obj
+  // 
 
-  insertBefore(item, node) {
+  insertBefore(item, nodeValue) {
     if (this.head === null) {
       console.log('Array is empty');
+    } else {
+      let tempNode = this.head;
+      let targetNode = this.head;
+      // console.log(tempNode);
+      // console.log(targetNode);
+      while (tempNode.value !== nodeValue) { // while (item !== nodeValue)
+        if (tempNode.next === null) {
+          return null;
+        } else {
+          targetNode = tempNode;
+          tempNode = tempNode.next;
+        }
+      }
+      targetNode.next = new _Node(item, tempNode);
     }
-    while
   }
 
   insertAfter(item, node) {
@@ -131,21 +128,21 @@ const main = () => {
   const SLL = new LinkedList();
 
   SLL.insertFirst('Apollo');
-  SLL.insertFirst('Boomer');
+  // SLL.insertFirst('Boomer');
   SLL.insertFirst('Helo');
-  SLL.insertFirst('Husker');
-  SLL.insertFirst('Starbuck');
+  // SLL.insertFirst('Husker');
+  // SLL.insertFirst('Starbuck');
 
-  console.log(SLL);
+  // console.log(SLL);
 
-  SLL.insertFirst('Tauhida');
+  // SLL.insertFirst('Tauhida');
 
-  console.log(SLL);
+  // console.log(SLL);
 
-  SLL.remove('squirrel');
+  // SLL.remove('squirrel');
   
-  SLL.insertBefore('Thinkful', 'Tauhida');
-  console.log(SLL);
+  SLL.insertBefore('Boomer', 'Apollo');
+  console.log(JSON.stringify(SLL));
 };
 
 main();
