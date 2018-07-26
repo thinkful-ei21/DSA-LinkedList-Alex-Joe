@@ -3,7 +3,7 @@
 class _Node {
   constructor(value, next) {
     this.value = value;
-    this.next=next;
+    this.next = next;
   }
 }
 
@@ -25,6 +25,49 @@ class LinkedList {
         tempNode = tempNode.next;
       }
       tempNode.next = new _Node(item, null);
+    }
+  }
+
+  // insertBefore(item, node) {
+  //   if (this.head === null) {
+  //     console.log('Array is empty');
+  //   } else {
+  //     let tempNode = this.head;
+  //     let targetNode = this.head;
+  //     let tempNode2 = tempNode;
+  //     while (targetNode.value !== node) {
+  //       if (targetNode.next === null) {
+  //         return null;
+  //       } else {
+  //         tempNode = tempNode.next;
+  //         tempNode2 = tempNode;
+  //       }
+  //     }
+  //     targetNode = new _Node(item, tempNode);
+  //     tempNode2.next = targetNode;
+  //   }
+  // }
+
+  insertBefore(item, node) {
+    if (this.head === null) {
+      console.log('Array is empty');
+    }
+    while
+  }
+
+  insertAfter(item, node) {
+    if (this.head === null) {
+      console.log('Array is empty');
+    } else {
+      let tempNode = this.head;
+      while (tempNode.value !== node) {
+        if (tempNode.next === null) {
+          return null;
+        } else {
+          tempNode = tempNode.next;
+        }
+      }
+      tempNode.next = new _Node(item, this.head);
     }
   }
 
@@ -93,16 +136,16 @@ const main = () => {
   SLL.insertFirst('Husker');
   SLL.insertFirst('Starbuck');
 
-  console.log(SLL)
+  console.log(SLL);
 
   SLL.insertFirst('Tauhida');
 
   console.log(SLL);
 
   SLL.remove('squirrel');
-
-//   console.log(SLL);
   
+  SLL.insertBefore('Thinkful', 'Tauhida');
+  console.log(SLL);
 };
 
 main();
