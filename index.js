@@ -92,6 +92,19 @@ const main = () => {
   SLL.insertFirst('Helo');
   SLL.insertFirst('Husker');
   SLL.insertFirst('Starbuck');
+
+  console.log(SLL)
+
+  SLL.insertFirst('Tauhida');
+
+  console.log(SLL);
+
+  SLL.remove('squirrel');
+
+//   console.log(SLL);
+  
 };
+
+main();
 
 
