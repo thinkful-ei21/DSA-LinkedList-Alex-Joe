@@ -220,18 +220,25 @@ findLast(main());
 // O(log n) -> seems as if the list gets shorter through each iteration
 // if current value === next value, the next value becomes the value afterward
 
-// // REVERSE // //
-// const reverse = ll => {
-//   let prev = ll.head;
-//   let current = ll.head;
-//   while (prev !== null) {
-//     current = current.next;
-//     current = prev;
-//   }
-//   console.log(prev);
-// };
+// REVERSE //
+const reverse = ll => {
+  let current = ll.head;
+  let prev = null;
+  let next = null; // always points to the next of current
+  
+  // 1 -> 2 -> 3 -> 4 // next = 2 // current.next = null
 
-// reverse(main());
+  while (current !== null) {
+    next = current.next; // save current's next value!
+    current.next = prev; // null
+    prev = current; // 1 // 2
+    current = next; // 2 // 3
+  }
+  ll.head = prev;
+  return ll;
+};
+
+console.log(JSON.stringify(reverse(main()), null, 1));
 
 
 
@@ -251,6 +258,7 @@ const thirdFromEnd = ll => {
 };
 
 thirdFromEnd(main());
+
 
 
 // MIDDLE OF A LIST //
