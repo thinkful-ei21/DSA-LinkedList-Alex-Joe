@@ -83,4 +83,15 @@ class LinkedList {
   }
 }
 
+const main = () => {
+  // create new instance of a linked list
+  const SLL = new LinkedList();
+
+  SLL.insertFirst('Apollo');
+  SLL.insertFirst('Boomer');
+  SLL.insertFirst('Helo');
+  SLL.insertFirst('Husker');
+  SLL.insertFirst('Starbuck');
+};
+
 
