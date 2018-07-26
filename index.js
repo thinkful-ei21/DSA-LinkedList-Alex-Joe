@@ -127,6 +127,7 @@ const main = () => {
   SLL.insertFirst('Husker');
   SLL.insertFirst('Starbuck');
   SLL.insertFirst('Tauhida');
+  SLL.insertFirst('Voker');
 
   SLL.insertBefore('Boomer', 'Helo');
   SLL.insertAfter('Pudge', 'Starbuck');
@@ -158,7 +159,6 @@ const size = ll => {
     pointer = pointer.next;
     counter++;
   }
-  console.log(counter);
   return counter;
 };
 
@@ -169,10 +169,8 @@ size(main());
 // IS IT EMPTY? //
 const isEmpty = ll => {
   if (ll.head === null) {
-    console.log(true);
     return true;
   } else {
-    console.log(false);
     return false;
   }
 };
@@ -182,12 +180,22 @@ isEmpty(main());
 
 
 // FIND PREVIOUS //
-const findPrevious = ll => {
+const findPrevious = (ll, target) => {
+  let prev = ll.head;
+  let current = ll.head;
   if (isEmpty(ll)) {
     console.log('Empty array');
   }
-
+  while (current.value !== target) {
+    prev = current;
+    current = current.next;
+    if (current.value === target) {
+      console.log(prev.value);
+      return prev;
+    }
+  }
 };
+findPrevious(main(), 'Kasha');
 
 
 
@@ -207,3 +215,60 @@ const findLast = ll => {
 };
 
 findLast(main());
+
+// seems like the program is filtering for duplicates iteratively
+// O(log n) -> seems as if the list gets shorter through each iteration
+// if current value === next value, the next value becomes the value afterward
+
+// // REVERSE // //
+// const reverse = ll => {
+//   let prev = ll.head;
+//   let current = ll.head;
+//   while (prev !== null) {
+//     current = current.next;
+//     current = prev;
+//   }
+//   console.log(prev);
+// };
+
+// reverse(main());
+
+
+
+// THIRD FROM THE END //
+const thirdFromEnd = ll => {
+  let counter = 0;
+  let prev = ll.head;
+  if (isEmpty(ll)) {
+    console.log('Empty array');
+  }
+  while (counter < (size(ll) - 3)) {
+    prev = prev.next;
+    counter++;
+  }
+  console.log(prev.value);
+  return prev;
+};
+
+thirdFromEnd(main());
+
+
+// MIDDLE OF A LIST //
+const middle = ll => {
+  let slowPtr = ll.head;
+  let fastPtr = ll.head;
+  if (size(ll) % 2 === 1) {
+    while (fastPtr.next !== null) {
+      slowPtr = slowPtr.next;
+      fastPtr = fastPtr.next.next;
+    }
+    if (fastPtr.next === null) {
+      console.log(slowPtr.value);
+      return slowPtr;
+    }
+  } else {
+    console.log('The list has no middle');
+  }
+};
+
+middle(main());
