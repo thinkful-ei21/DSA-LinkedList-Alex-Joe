@@ -30,42 +30,37 @@ class LinkedList {
 
   // 5, 9, 10, 11
   // (6, 9) => item is #, node is obj
-  // 
 
-  insertBefore(item, nodeValue) {
-    if (this.head === null) {
-      console.log('Array is empty');
-    } else {
-      let tempNode = this.head;
-      let targetNode = this.head;
-      // console.log(tempNode);
-      // console.log(targetNode);
-      while (tempNode.value !== nodeValue) { // while (item !== nodeValue)
-        if (tempNode.next === null) {
-          return null;
-        } else {
-          targetNode = tempNode;
-          tempNode = tempNode.next;
-        }
-      }
-      targetNode.next = new _Node(item, tempNode);
+  insertBefore(item, value) {
+    let prev = this.head;
+    let current = this.head;
+    while (current.value !== value) {
+      prev = current;
+      current = current.next;
     }
+    prev.next = new _Node(item, current);
   }
 
-  insertAfter(item, node) {
-    if (this.head === null) {
-      console.log('Array is empty');
-    } else {
-      let tempNode = this.head;
-      while (tempNode.value !== node) {
-        if (tempNode.next === null) {
-          return null;
-        } else {
-          tempNode = tempNode.next;
-        }
-      }
-      tempNode.next = new _Node(item, this.head);
+  insertAfter(item, value) {
+    let prev = this.head;
+    let current = this.head;
+    while (current.value !== value) {
+      prev = current;
+      current = current.next;
     }
+    prev.next = new _Node(item, current.next);
+  }
+
+  insertAt(item, position) {
+    let counter = 0;
+    let prev = this.head;
+    let current = this.head;
+    while (position > counter) {
+      prev = current;
+      current = current.next;
+      counter++;
+    }
+    prev.next = new _Node(item, current);
   }
 
   find(item) {
@@ -128,23 +123,87 @@ const main = () => {
   const SLL = new LinkedList();
 
   SLL.insertFirst('Apollo');
-  // SLL.insertFirst('Boomer');
   SLL.insertFirst('Helo');
-  // SLL.insertFirst('Husker');
-  // SLL.insertFirst('Starbuck');
+  SLL.insertFirst('Husker');
+  SLL.insertFirst('Starbuck');
+  SLL.insertFirst('Tauhida');
 
-  // console.log(SLL);
+  SLL.insertBefore('Boomer', 'Helo');
+  SLL.insertAfter('Pudge', 'Starbuck');
+  SLL.insertAt('Kasha', 4);
 
-  // SLL.insertFirst('Tauhida');
+  SLL.remove('Tauhida');
 
-  // console.log(SLL);
-
-  // SLL.remove('squirrel');
-  
-  SLL.insertBefore('Boomer', 'Apollo');
-  console.log(JSON.stringify(SLL));
+  return SLL;
 };
 
-main();
 
 
+// DISPLAY //
+const display = ll => {
+  console.log(JSON.stringify(ll, null, 1));
+  return JSON.stringify(ll);
+};
+
+display(main());
+
+
+
+// SIZE //
+const size = ll => {
+  let counter = 0;
+  let pointer = ll.head;
+
+  while (pointer !== null) {
+    pointer = pointer.next;
+    counter++;
+  }
+  console.log(counter);
+  return counter;
+};
+
+size(main());
+
+
+
+// IS IT EMPTY? //
+const isEmpty = ll => {
+  if (ll.head === null) {
+    console.log(true);
+    return true;
+  } else {
+    console.log(false);
+    return false;
+  }
+};
+
+isEmpty(main());
+
+
+
+// FIND PREVIOUS //
+const findPrevious = ll => {
+  if (isEmpty(ll)) {
+    console.log('Empty array');
+  }
+
+};
+
+
+
+// FIND LAST //
+const findLast = ll => {
+  let counter = 0;
+  let prev = ll.head;
+  if (isEmpty(ll)) {
+    console.log('Empty array');
+  }
+  while (counter < (size(ll) - 1)) {
+    prev = prev.next;
+    counter++;
+  }
+  console.log(prev);
+  return prev;
+};
+
+findLast(main());
